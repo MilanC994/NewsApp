@@ -1,13 +1,10 @@
 import React from 'react'
 import { Navbar, Form, Button, FormControl } from 'react-bootstrap'
 import useHeader from './hooks/useHeader'
-import { countries, searchSort } from '../utils/constants'
 
 const Header = () => {
-  const { search, country, sort, renderCountries} = useHeader()
-  console.log(renderCountries, "Render countries je ")
-  const selectList =  renderCountries ? { item: country, options: countries } : { item: sort, options: searchSort }
-    
+  const { search, selectList } = useHeader()
+
     return (
         <Navbar fixed="top" className="mb1" bg="primary" variant="dark" expand="md">
         <Navbar.Brand href="#">News Application</Navbar.Brand>

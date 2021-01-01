@@ -1,7 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import { useState, useCallback, useMemo } from 'react'
 import {  setSearchTerm, setSortBy, setCountry } from "../../redux/actions"
 import _ from 'lodash'
+import { countries, searchSort } from '../../utils/constants'
 
 const SEARCH_DEBOUNCE_TIME = 1000
 
@@ -54,7 +55,11 @@ const useHeader = () => {
         return { value: byCountry, onChange: changeCountry }
     }, [byCountry, changeCountry])
 
-  return { search, country, sort, renderCountries }
+    const selectList =  useMemo(() => {
+        return renderCountries ? { item: country, options: countries } : { item: sort, options: searchSort }
+    },[renderCountries, country, sort])
+
+  return { search, selectList }
 }
 
 export default useHeader

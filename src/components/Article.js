@@ -16,13 +16,14 @@ const Article = (props) => {
     return (
     <Container>
         <Card className="article-card">
-            <h2 className="display-4">{title}</h2>
+            <h1 className="display-5">{title}</h1>
             <Card.Header><Card.Subtitle className="display-5">{description}</Card.Subtitle></Card.Header>
             <Card.Body>
                 <Container>
                     <Image alt="article-image" style={{ float:"left", margin:"10px" }} src={urlToImage} {...picSize}/>
                     {content ? <Card.Text>{content}{dummyText}</Card.Text> : <Card.Text>Content Not Provided. Click <Link to="/">here</Link> to go to front page</Card.Text>}
                 </Container>
+                <hr/>
                 <Row style={{marginTop:"10px"}}>
                     <Col>
                         <ListGroup  horizontal>
@@ -34,8 +35,8 @@ const Article = (props) => {
                             <ListGroup.Item variant="light" >{dateSvg()} Published At:{datePublishedAt}</ListGroup.Item>
                         </ListGroup>
                     </Col>
-                    <Col>
-                        <ListGroup  horizontal>
+                    <Col bsPrefix="justify">
+                        <ListGroup  horizontal >
                             <ListGroup.Item variant="light" >{sourceSvg()} Source:{sourceName}</ListGroup.Item>
                         </ListGroup>
                     </Col>
@@ -46,12 +47,12 @@ const Article = (props) => {
             <Row style={{marginTop:"10px"}}>
                     <Col>
                         <ListGroup  horizontal>
-                            <ListGroup.Item variant="light" ><a href={url} target="_blank" rel="noopener noreferrer" >Visit Source Website</a></ListGroup.Item>
+                            <ListGroup.Item variant="light" ><Link to="/">Back To Front Page</Link></ListGroup.Item>
                         </ListGroup> 
                     </Col>
-                    <Col style={{border:"2px solid red"}} align='right'> 
-                        <ListGroup  horizontal style={{border:"2px solid green", alignContent:"right"}}>
-                            <ListGroup.Item variant="light"><Link to="/">Back to front page</Link></ListGroup.Item>
+                    <Col  bsPrefix="justify"> 
+                        <ListGroup  horizontal style={{width:"fit-content"}}>
+                            <ListGroup.Item variant="light"><a href={url} target="_blank" rel="noopener noreferrer" >Visit Source Website</a></ListGroup.Item>
                         </ListGroup>
                     </Col>
                 </Row>
