@@ -2,10 +2,10 @@ import React from 'react'
 import { Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const ArticleCard = ({ title, description, urlToImage, author, content, publishedAt, source }) => {
+const ArticleCard = ({ title, description, urlToImage, author, content, publishedAt, source, url }) => {
     return (
-        <Card>
-            {urlToImage &&<Card.Img variant="top" src={urlToImage} />}
+        <Card className="article-card">
+            {urlToImage &&<Card.Img className="card-image" variant="top" src={urlToImage} />}
             <Card.Body>
             <Card.Title>{title}</Card.Title>
             <Card.Text>
@@ -22,7 +22,8 @@ const ArticleCard = ({ title, description, urlToImage, author, content, publishe
                 author,
                 content,
                 publishedAt,
-                source
+                source,
+                url
              }
             }}>
              <Button variant="primary">Read Full Article</Button>

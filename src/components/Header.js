@@ -1,17 +1,27 @@
 import React from 'react'
 import { Navbar, Form, Button, FormControl } from 'react-bootstrap'
 import useHeader from './hooks/useHeader'
+import { countries } from '../utils/countries'
 
 const Header = () => {
-    const { search, sort } = useHeader()
+    const { search, sort, changeCountry} = useHeader()
     return (
-        <Navbar className="mb-3" bg="dark" variant="dark" expand="md">
+        <Navbar fixed="top" className="mb1" bg="primary" variant="dark" expand="md">
         <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-        <Form inline className="ml-auto">
+        <Form inline className="ml-auto" onSubmit={(e)=>{e.preventDefault()}}>
+        <Form.Control
+        as="select"
+        className="mr-sm-2" 
+        id="inlineFormCustomSelect"
+        custom
+        onChange={changeCountry}
+      >
+        {countries.map(country => <option key={country.value} {...country}>{country.name}</option>)}
+      </Form.Control>
             <FormControl type="text" placeholder="Search" className="mr-sm-2" { ...search }/>
-            <Button variant="outline-info" { ...sort }>Search</Button>
+            <Button variant="outline-light" { ...sort }>Search</Button>
           </Form>
           {/* <Nav style={{ border:"2px solid red" }}>
             <Nav.Link href="#home">Home</Nav.Link>

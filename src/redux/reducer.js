@@ -1,19 +1,10 @@
-import { FETCH_ARTICLES, SET_SEARCH_TERM, SET_SORT_BY } from "./constants"
+import { FETCH_ARTICLES, SET_SEARCH_TERM, SET_SORT_BY, SET_COUNTRY } from "./constants"
   
   const initialState = {
     articles: [],
     searchTerm: '',
     sortBy: null,
-    contentDetails:{
-      id:'',
-      title:'',
-      name:'',
-      original_name:'',
-      poster_path:'',
-      overview:'',
-      release_date:'',
-      first_air_date:''
-    }
+    country:"us"
   }
   
   const reducer = (state = initialState, action ) => {
@@ -32,6 +23,11 @@ import { FETCH_ARTICLES, SET_SEARCH_TERM, SET_SORT_BY } from "./constants"
       case SET_SORT_BY: {
           return {
             ...state, sortBy: action.payload
+          }
+      }
+      case SET_COUNTRY: {
+          return {
+            ...state, country: action.payload
           }
       }
       default: {

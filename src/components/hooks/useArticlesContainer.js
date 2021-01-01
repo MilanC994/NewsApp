@@ -8,6 +8,9 @@ import _ from 'lodash'
 const useContentContainer = () => {
     const selectArticles = state => state.articles
     const articles = useSelector(selectArticles)
+    
+    const selectCountry = state => state.country
+    const country = useSelector(selectCountry)
 
     const selectSearchTerm = state => state.searchTerm 
     const searchTerm = useSelector(selectSearchTerm)
@@ -18,8 +21,8 @@ const useContentContainer = () => {
     const dispatch = useDispatch()
 
     const getData = useCallback(async() => {
-    await dispatch(fetchArticles(searchTerm, sortBy))
-    },[searchTerm, sortBy])
+    await dispatch(fetchArticles(searchTerm, sortBy, country))
+    },[searchTerm, sortBy, country])
 
     useEffect(() => {
         const fetch = async () => {
