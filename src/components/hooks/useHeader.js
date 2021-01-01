@@ -14,6 +14,9 @@ const useHeader = () => {
     
     const selectSortBy = state => state.sortBy
     const sortBy = useSelector(selectSortBy)
+    
+    const selectByCountry = state => state.country
+    const byCountry = useSelector(selectByCountry)
 
     const dispatch = useDispatch()
 
@@ -38,12 +41,20 @@ const useHeader = () => {
     const search = useMemo(() => {
         return { value: searchValue, onChange: changeSearchTerm }
     }, [searchTerm, changeSearchTerm])
+    
+    const renderCountries = useMemo(() => {
+        return searchTerm.length === 0
+    }, [searchTerm])
 
     const sort = useMemo(() => {
-        return { value: sortBy, onClick: changeSortBy }
+        return { value: sortBy, onChange: changeSortBy }
     }, [sortBy, changeSortBy])
 
-  return { search, sort, changeCountry }
+    const country = useMemo(() => {
+        return { value: byCountry, onChange: changeCountry }
+    }, [byCountry, changeCountry])
+
+  return { search, country, sort, renderCountries }
 }
 
 export default useHeader

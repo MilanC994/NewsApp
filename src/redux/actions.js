@@ -8,8 +8,8 @@ import {
 
   const getUrl = (searchTerm, sortBy, country = 'us') => {
     if(searchTerm){
-      const url = process.env.REACT_APP_SEARCH_ARTICLES_URL + searchTerm
-      return sortBy ? url + '&sortBy=' + sortBy : url
+      return process.env.REACT_APP_SEARCH_ARTICLES_URL + searchTerm + '&sortBy=' + sortBy
+      // return sortBy ? url + '&sortBy=' + sortBy : url
     }
     return process.env.REACT_APP_TOP_ARTICLES_URL + country
 

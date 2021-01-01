@@ -3,8 +3,8 @@ import { FETCH_ARTICLES, SET_SEARCH_TERM, SET_SORT_BY, SET_COUNTRY } from "./con
   const initialState = {
     articles: [],
     searchTerm: '',
-    sortBy: null,
-    country:"us"
+    sortBy: 'publishedAt',
+    country:'us'
   }
   
   const reducer = (state = initialState, action ) => {

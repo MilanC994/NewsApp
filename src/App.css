@@ -5,6 +5,7 @@
   /* background: linear-gradient(0deg, rgba(34,145,195,1) 0%, rgba(45,94,253,0.8127626050420168) 100%); */
   background: linear-gradient(to right, rgb(211, 204, 227), rgb(233, 228, 240));
   min-height: 100vh;
+  padding-bottom: 10px;
 }
 
 .title-container{
@@ -20,8 +21,8 @@
   font-weight: bolder;
 }
 .article-card{
-  /* background: rgb(238,174,202);
-  background: linear-gradient(to right, rgb(211, 204, 227), rgb(233, 228, 240)); */
+  background: rgb(238,174,202);
+  background: linear-gradient(to right, rgb(211, 204, 227), rgb(233, 228, 240));
 
 }
 .card-image{

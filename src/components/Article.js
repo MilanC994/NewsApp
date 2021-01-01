@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Image, Card, Figure, ListGroup, Row, Col, Badge } from 'react-bootstrap'
 import { Redirect, Link } from 'react-router-dom'
-import { dummyText } from '../utils/helperText'
+import { dummyText } from '../utils/constants'
 import { authorSvg, dateSvg, sourceSvg } from '../utils/svgIcons'
 import moment from 'moment'
 
