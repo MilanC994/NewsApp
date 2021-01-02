@@ -11,7 +11,7 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Form inline className="ml-auto" onSubmit={(e)=>{e.preventDefault()}}>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" { ...search }/>
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" {...search}/>
             <Form.Control
               as="select"
               className="mr-sm-2" 

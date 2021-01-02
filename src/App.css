@@ -1,10 +1,10 @@
 .App {
-  padding-top: 60px;
   text-align: center;
   background: rgb(34,145,195);
   background: linear-gradient(0deg, rgba(34,145,195,1) 0%, rgba(45,94,253,0.8127626050420168) 100%); 
   min-height: 100vh;
-  padding-bottom: 10px;
+  padding: 60px 5px 10px 5px;
+
 }
 
 .title-container{

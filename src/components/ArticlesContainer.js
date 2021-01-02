@@ -5,7 +5,6 @@ import useArticlesContainer from './hooks/useArticlesContainer'
 
 const ArticlesContainer = () => {
     const { articles, getMoreData, renderLoadMoreButton } = useArticlesContainer()
-    console.log("Clanci", articles)
     return (
         <>
             <CardColumns>

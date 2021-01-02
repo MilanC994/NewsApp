@@ -3,8 +3,7 @@ import {
     SET_SEARCH_TERM,
     SET_SORT_BY,
     SET_COUNTRY,
-    FETCH_MORE_ARTICLES,
-    NO_ARTICLES_LEFT
+    FETCH_MORE_ARTICLES
   } from "./constants"
   import axios from "axios"
 
@@ -17,44 +16,34 @@ import {
   }
 
   export const fetchArticles = (searchTerm, sortBy, country) => {
-    console.log("U Fetch Articles st:", searchTerm,"  sort:  ", sortBy)
     const url = getUrl(searchTerm, sortBy, country)
-    console.log("Dobijeni URL", url)
     return async dispatch => {
       try {
         const response = await axios.get(url)
-        console.log(response, "Response")
          dispatch({
                     type: FETCH_ARTICLES,
                     payload: response.data
                   })
       }
       catch(error) {
-        console.log(error, "LOGGED ERROR")
+        console.log(error)
+        alert('Error Happened While Fetching Movies')
       }
     }
   }
   export const fetchMoreArticles = (searchTerm, sortBy, country, page) => {
-    console.log("U Fetch Articles st:", searchTerm,"  sort:  ", sortBy)
     const url = getUrl(searchTerm, sortBy, country) + '&page=' + page
-    
-    console.log("Dobijeni URL LOAD MORE", url)
     return async dispatch => {
       try {
         const response = await axios.get(url)
-        console.log(response, "Response")
-        // if(!response.data.articles.length){
-        //   dispatch({
-        //     type: NO_ARTICLES_LEFT
-        //   })
-        // }
          dispatch({
                     type: FETCH_MORE_ARTICLES,
                     payload: response.data
                   })
       }
       catch(error) {
-        console.log(error, "LOGGED ERROR")
+        console.log(error)
+        alert('Error Happened While Fetching Movies')
       }
     }
   }

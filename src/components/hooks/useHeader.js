@@ -26,14 +26,14 @@ const useHeader = () => {
         },SEARCH_DEBOUNCE_TIME),[])
 
     const changeCountry = useCallback((e) => {
-        console.log(e.target.value, "  IZ USE CALLBACK COUNTRY")
         dispatch(setCountry(e.target.value))
     },[])
 
-    const changeSearchTerm = e => {
-        setSearchValue(e.target.value)
-        debouncedSetSearchTerm(e.target.value)       
-    }
+    const changeSearchTerm = useCallback(e => {
+            setSearchValue(e.target.value)
+            debouncedSetSearchTerm(e.target.value)
+    },[])       
+    
 
     const changeSortBy = useCallback((e) => {
       dispatch(setSortBy(e.target.value))
