@@ -1,0 +1,2 @@
+REACT_APP_TOP_ARTICLES_URL=https://newsapi.org/v2/top-headlines?apiKey={ApiKey}&country=
+REACT_APP_SEARCH_ARTICLES_URL=http://newsapi.org/v2/everything?apiKey={ApiKey}=
