@@ -10,7 +10,6 @@ const Article = (props) => {
         return <Redirect to="/"/>
     const { title, source, author, description, urlToImage, publishedAt, content, url } = props.location.state
 
-    const picSize = content ? {width:"60%", height:"50%"} :{width:"100%"}
     const datePublishedAt = publishedAt ? moment(publishedAt).format('Do MMMM YYYY HH:SS') : 'Date not provided'
     const sourceName = source && source.name ? source.name : 'Source Not Provided'
     return (
@@ -19,35 +18,38 @@ const Article = (props) => {
             <h1 className="display-5">{title}</h1>
             <Card.Header><Card.Subtitle className="display-5">{description}</Card.Subtitle></Card.Header>
             <Card.Body>
-                <Container>
-                    <Image alt="article-image" style={{ float:"left", margin:"10px" }} src={urlToImage} {...picSize}/>
-                    {content ? <Card.Text>{content}{dummyText}</Card.Text> : <Card.Text>Content Not Provided. Click <Link to="/">here</Link> to go to front page</Card.Text>}
-                </Container>
-                <hr/>
+                
                 <Row style={{marginTop:"10px"}}>
                     <Col>
                         <ListGroup  horizontal>
                             <ListGroup.Item variant="light" >{authorSvg()} Author:{author ? author:'Not Listed'}</ListGroup.Item>
                         </ListGroup> 
                     </Col>
-                    <Col>
-                        <ListGroup  horizontal>
+                    <Col bsPrefix="justify">
+                        <ListGroup  horizontal >
                             <ListGroup.Item variant="light" >{dateSvg()} Published At:{datePublishedAt}</ListGroup.Item>
                         </ListGroup>
                     </Col>
-                    <Col bsPrefix="justify">
-                        <ListGroup  horizontal >
+                </Row>
+                <hr/>
+                <Container>
+                    <Image alt="article-image" style={{ float:"left", margin:"10px", maxHeight:"800px"}} src={urlToImage} width="100%"/>
+                    {content ? <Card.Text>{content}{dummyText}</Card.Text> : <Card.Text>Content Not Provided. Click <Link to="/">here</Link> to go to front page</Card.Text>}
+                </Container>
+                <hr/>
+                <Row style={{marginTop:"10px"}}>
+                    <Col>
+                        <ListGroup  horizontal>
                             <ListGroup.Item variant="light" >{sourceSvg()} Source:{sourceName}</ListGroup.Item>
-                        </ListGroup>
+                        </ListGroup> 
                     </Col>
-                    
                 </Row>
             </Card.Body>
             <Card.Footer>
             <Row style={{marginTop:"10px"}}>
                     <Col>
                         <ListGroup  horizontal>
-                            <ListGroup.Item variant="light" ><Link to="/">Back To Front Page</Link></ListGroup.Item>
+                            <ListGroup.Item variant="light" ><Link to="/">Home Page</Link></ListGroup.Item>
                         </ListGroup> 
                     </Col>
                     <Col  bsPrefix="justify"> 
