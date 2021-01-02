@@ -2,8 +2,7 @@
   padding-top: 60px;
   text-align: center;
   background: rgb(34,145,195);
-  /* background: linear-gradient(0deg, rgba(34,145,195,1) 0%, rgba(45,94,253,0.8127626050420168) 100%); */
-  background: linear-gradient(to right, rgb(211, 204, 227), rgb(233, 228, 240));
+  background: linear-gradient(0deg, rgba(34,145,195,1) 0%, rgba(45,94,253,0.8127626050420168) 100%); 
   min-height: 100vh;
   padding-bottom: 10px;
 }
@@ -28,4 +27,15 @@
 .card-image{
   max-height: 300px;
   max-width: 510px;
+}
+.content-paragraph {
+  font: 15px/1.5 arial, helvetica, sans-serif;
+  }
+.content-paragraph:first-letter{
+    float: left;
+    font-size: 45px;
+    line-height: 1;
+    font-weight: bold;
+    margin-right: 9px;
+
 }

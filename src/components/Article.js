@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Image, Card, Figure, ListGroup, Row, Col, Badge } from 'react-bootstrap'
+import { Container, Card, Figure, ListGroup, Row, Col } from 'react-bootstrap'
 import { Redirect, Link } from 'react-router-dom'
 import { dummyText } from '../utils/constants'
 import { authorSvg, dateSvg, sourceSvg } from '../utils/svgIcons'
@@ -16,34 +16,23 @@ const Article = (props) => {
     <Container>
         <Card className="article-card">
             <h1 className="display-5">{title}</h1>
-            <Card.Header><Card.Subtitle className="display-5">{description}</Card.Subtitle></Card.Header>
             <Card.Body>
-                
-                <Row style={{marginTop:"10px"}}>
-                    <Col>
-                        <ListGroup  horizontal>
-                            <ListGroup.Item variant="light" >{authorSvg()} Author:{author ? author:'Not Listed'}</ListGroup.Item>
-                        </ListGroup> 
-                    </Col>
-                    <Col bsPrefix="justify">
-                        <ListGroup  horizontal >
-                            <ListGroup.Item variant="light" >{dateSvg()} Published At:{datePublishedAt}</ListGroup.Item>
-                        </ListGroup>
-                    </Col>
-                </Row>
+                <ListGroup horizontal="sm">
+                    <ListGroup.Item variant="dark">{authorSvg()} Author: {author ? author:'Not Listed'}</ListGroup.Item>
+                    <ListGroup.Item variant="dark">{sourceSvg()} Source: {sourceName}</ListGroup.Item>
+                    <ListGroup.Item variant="dark">{dateSvg()} Published At: {datePublishedAt}</ListGroup.Item>
+                    </ListGroup>
+                <hr/>
+                <Card.Subtitle className="display-5">{description}</Card.Subtitle>
                 <hr/>
                 <Container>
-                    <Image alt="article-image" style={{ float:"left", margin:"10px", maxHeight:"800px"}} src={urlToImage} width="100%"/>
-                    {content ? <Card.Text>{content}{dummyText}</Card.Text> : <Card.Text>Content Not Provided. Click <Link to="/">here</Link> to go to front page</Card.Text>}
+                    <Figure>
+                        <Figure.Image alt="article-image" style={{ float:"left", margin:"10px", maxHeight:"800px"}} src={urlToImage} width="100%"/>
+                        <Figure.Caption>Nulla vitae elit libero, a pharetra augue mollis interdum.</Figure.Caption>
+                    </Figure>
+                    
+                    {content ? <Card.Text align="justify" className="content-paragraph">{content}{dummyText}</Card.Text> : <Card.Text>Content Not Provided. Click <Link to="/">here</Link> to go to front page</Card.Text>}
                 </Container>
-                <hr/>
-                <Row style={{marginTop:"10px"}}>
-                    <Col>
-                        <ListGroup  horizontal>
-                            <ListGroup.Item variant="light" >{sourceSvg()} Source:{sourceName}</ListGroup.Item>
-                        </ListGroup> 
-                    </Col>
-                </Row>
             </Card.Body>
             <Card.Footer>
             <Row style={{marginTop:"10px"}}>
