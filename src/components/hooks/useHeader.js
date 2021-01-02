@@ -1,4 +1,3 @@
-/* eslint-disable-line react-hooks/exhaustive-deps */
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useCallback, useMemo } from 'react'
 import {  setSearchTerm, setSortBy, setCountry } from "../../redux/actions"
