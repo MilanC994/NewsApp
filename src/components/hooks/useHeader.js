@@ -1,3 +1,4 @@
+/* eslint-disable-line react-hooks/exhaustive-deps */
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useCallback, useMemo } from 'react'
 import {  setSearchTerm, setSortBy, setCountry } from "../../redux/actions"
@@ -41,7 +42,7 @@ const useHeader = () => {
 
     const search = useMemo(() => {
         return { value: searchValue, onChange: changeSearchTerm }
-    }, [searchTerm, changeSearchTerm])
+    }, [searchValue, changeSearchTerm])
     
     const renderCountries = useMemo(() => {
         return searchTerm.length === 0

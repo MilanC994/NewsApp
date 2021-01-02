@@ -27,19 +27,17 @@ const useContentContainer = () => {
     const dispatch = useDispatch()
 
     const getData = useCallback(async() => {
-    await dispatch(fetchArticles(searchTerm, sortBy, country))
+        await dispatch(fetchArticles(searchTerm, sortBy, country))
     },[searchTerm, sortBy, country])
     
     const getMoreData = useCallback(async() => {
-    console.log(page,"PAGE IZ USECONTAINERA")
-    await dispatch(fetchMoreArticles(searchTerm, sortBy, country, page + 1))
+        await dispatch(fetchMoreArticles(searchTerm, sortBy, country, page + 1))
     },[searchTerm, sortBy, country, page])
 
     const renderLoadMoreButton = useMemo(() => {
-        console.log(totalResults > articles.length && articles.length < 100, "USLOV ZA RENDER, LENT", articles.length)
         return totalResults > articles.length && articles.length < 100 
     },[totalResults, articles])
-    console.log(page,"PEEJJJJJJJSZ")
+
     useEffect(() => {
         const fetch = async () => {
         await getData()

@@ -11,7 +11,6 @@ const ArticlesContainer = () => {
             <CardColumns>
                 {
                     articles && articles.map(article => <ArticleCard key={article.url + Math.random()} {...article} />)
-                    // articles.map(article=><div>{article.title}</div>)
                 }
             </CardColumns>
             <hr/>
