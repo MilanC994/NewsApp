@@ -2,7 +2,7 @@ import './App.css';
 import Header from './components/Header'
 import ArticlesContainer from './components/ArticlesContainer'
 import Article from './components/Article'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 function App() {
   return (
@@ -12,6 +12,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={ArticlesContainer}/>
           <Route path="/article" exact component={Article} />
+          <Route render={() => <Redirect to="/" />} />
         </Switch> 
       </div>
     </Router>
