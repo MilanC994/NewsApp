@@ -14,3 +14,5 @@ export const searchSort = [
     { name: 'Relevancy', value:'relevancy' },
     { name: 'Popularity', value:'popularity' }
 ]
+
+export const ARTICLE_HAS_NO_TITLE = 'ARTICLE HAS NO TITLE'

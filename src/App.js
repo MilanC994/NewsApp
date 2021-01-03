@@ -12,7 +12,7 @@ function App() {
         <Header/>
         <Switch>
           <Route path="/" exact component={ArticlesContainer}/>
-          <Route path="/article" exact component={Article} />
+          <Route path="/article/:title"  component={Article} />
           <Route render={() => <Redirect to="/" />} />
         </Switch> 
       </div>

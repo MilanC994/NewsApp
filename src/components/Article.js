@@ -27,11 +27,21 @@ const Article = (props) => {
                 <hr/>
                 <Container>
                     <Figure>
-                        <Figure.Image alt="article-image" style={{ float:"left", margin:"10px", maxHeight:"800px"}} src={urlToImage} width="100%"/>
-                        {urlToImage&&<Figure.Caption>Nulla vitae elit libero, a pharetra augue mollis interdum.</Figure.Caption>}
+                        <Figure.Image 
+                         alt="article-image"
+                         style={{ float:"left", margin:"10px", maxHeight:"800px"}}
+                         src={urlToImage} width="100%"
+                         />
+                        {urlToImage&&
+                            <Figure.Caption>Nulla vitae elit libero, a pharetra augue mollis interdum.</Figure.Caption>
+                        }
                     </Figure>
                     
-                    {content ? <Card.Text align="justify" className="content-paragraph">{content}{dummyText}</Card.Text> : <Card.Text>Content Not Provided. Click <Link to="/">here</Link> to go to front page</Card.Text>}
+                    {content ? 
+                        <Card.Text align="justify" className="content-paragraph">{content}{dummyText}</Card.Text>
+                         : 
+                        <Card.Text>Content Not Provided. Click <Link to="/">here</Link> to go to front page</Card.Text>
+                    }
                 </Container>
             </Card.Body>
             <Card.Footer>
