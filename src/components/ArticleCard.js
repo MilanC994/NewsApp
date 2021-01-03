@@ -5,7 +5,7 @@ import slugify from 'slugify'
 import { ARTICLE_HAS_NO_TITLE } from '../utils/constants'
 
 const ArticleCard = ({ title, description, urlToImage, author, content, publishedAt, source, url }) => {
-    const linkTo = title ? `/article/${slugify(title)}` : `/article/${slugify(ARTICLE_HAS_NO_TITLE) + Math.random()}`
+    const linkTo = title ? `/article/${slugify(title)}` : `/article/${slugify(ARTICLE_HAS_NO_TITLE)}`
     return (
         <Card className="article-card">
             {urlToImage &&<Card.Img className="card-image" alt="article-image" variant="top" src={urlToImage} />}
