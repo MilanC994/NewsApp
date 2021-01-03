@@ -31,7 +31,7 @@ const useHeader = () => {
 
     const changeSortBy = useCallback((e) => {
       dispatch(setSortBy(e.target.value))
-    },[dispatch])
+    },[])
 
     const search = useMemo(() => {
         return { value: searchValue, onChange: changeSearchTerm }
