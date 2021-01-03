@@ -14,7 +14,7 @@ const Header = () => {
             <FormControl type="text" placeholder="Search" className="mr-sm-2" {...search}/>
             <Form.Control
               as="select"
-              className="mr-sm-2" 
+              className="mr-sm-2 countries-sort-select-list" 
               id="inlineFormCustomSelect"
               custom
               {...selectList.item}

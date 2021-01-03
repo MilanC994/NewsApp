@@ -7,7 +7,7 @@ const ArticlesContainer = () => {
     const { articles, getMoreData, renderLoadMoreButton } = useArticlesContainer()
     return (
         <>
-            <CardColumns>
+            <CardColumns id="articles-container">
                 {
                     articles && articles.map(article => <ArticleCard key={article.url + Math.random()} {...article} />)
                 }
@@ -15,7 +15,7 @@ const ArticlesContainer = () => {
             <hr/>
             {renderLoadMoreButton&& 
                 <Container>
-                    <Button variant="primary" onClick={getMoreData} >LOAD MORE</Button>
+                    <Button variant="primary" id="load-more-articles-button" onClick={getMoreData} >LOAD MORE</Button>
                 </Container>
             }
          </>   

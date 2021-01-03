@@ -6,23 +6,12 @@ import _ from 'lodash'
 
 
 const useContentContainer = () => {
-    const selectArticles = state => state.articles
-    const articles = useSelector(selectArticles)
-    
-    const selectCountry = state => state.country
-    const country = useSelector(selectCountry)
-    
-    const selectPage = state => state.page
-    const page = useSelector(selectPage)
-    
-    const selectTotalResults = state => state.totalResults
-    const totalResults = useSelector(selectTotalResults)
-
-    const selectSearchTerm = state => state.searchTerm 
-    const searchTerm = useSelector(selectSearchTerm)
-
-    const selectSortBy = state => state.sortBy
-    const sortBy = useSelector(selectSortBy)
+    const articles = useSelector(state => state.articles)
+    const country = useSelector(state => state.country)
+    const page = useSelector(state => state.page)
+    const totalResults = useSelector(state => state.totalResults)
+    const searchTerm = useSelector(state => state.searchTerm)
+    const sortBy = useSelector(state => state.sortBy)
 
     const dispatch = useDispatch()
 

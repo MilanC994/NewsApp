@@ -1,3 +1,6 @@
+import React from 'react'
+
+
 export const authorSvg = () => {
     return(
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-people" viewBox="0 0 16 16">

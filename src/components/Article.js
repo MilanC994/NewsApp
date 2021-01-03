@@ -6,7 +6,7 @@ import { authorSvg, dateSvg, sourceSvg } from '../utils/svgIcons'
 import moment from 'moment'
 
 const Article = (props) => {
-    if(!props.location.state)
+    if(!props.location || !props.location.state)
         return <Redirect to="/"/>
     const { title, source, author, description, urlToImage, publishedAt, content, url } = props.location.state
 
@@ -28,7 +28,7 @@ const Article = (props) => {
                 <Container>
                     <Figure>
                         <Figure.Image alt="article-image" style={{ float:"left", margin:"10px", maxHeight:"800px"}} src={urlToImage} width="100%"/>
-                        <Figure.Caption>Nulla vitae elit libero, a pharetra augue mollis interdum.</Figure.Caption>
+                        {urlToImage&&<Figure.Caption>Nulla vitae elit libero, a pharetra augue mollis interdum.</Figure.Caption>}
                     </Figure>
                     
                     {content ? <Card.Text align="justify" className="content-paragraph">{content}{dummyText}</Card.Text> : <Card.Text>Content Not Provided. Click <Link to="/">here</Link> to go to front page</Card.Text>}
