@@ -1,3 +1,5 @@
+required node version 12.18.4 or higher
+
 run npm install
 
 create .env file and put this in it:
