@@ -1,4 +1,4 @@
-required node version 12.18.4 or higher
+required node version 12.14.1 or higher
 
 run npm install
 
