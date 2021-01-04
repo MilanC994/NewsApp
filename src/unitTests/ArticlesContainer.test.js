@@ -3,7 +3,6 @@ import React from 'react'
 import { mount } from 'enzyme'
 import ArticlesContainer from '../components/ArticlesContainer'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom'
 import { mountToJson } from 'enzyme-to-json'
 import moxios from 'moxios'
 
@@ -19,11 +18,16 @@ afterEach(() => {
     moxios.uninstall()
 })
 
-const axiosArticlesResponse = response => {
-    moxios.wait(() => {
-        const request = moxios.requests.mostRecent();
-        request.respondWith(response)
-    })
+const setUp = initialState => {
+    const store = createTestStore(initialState) 
+
+    const wrapper = mount(
+                        <Provider store={store}>
+                            <ArticlesContainer />
+                        </Provider>
+                    ).childAt(0)
+
+    return wrapper
 }
 
 describe('Articles Container Test test', () => {
@@ -36,13 +40,7 @@ describe('Articles Container Test test', () => {
             page: 1,
             totalResults: null
         }
-        const store = createTestStore(initialState) 
-
-        const wrapper = mount(
-                <Provider store={store}>
-                    <ArticlesContainer />
-                </Provider>
-                    ).childAt(0)
+        const wrapper = setUp(initialState)
         expect(mountToJson(wrapper)).toMatchSnapshot()
             })
     
@@ -55,16 +53,7 @@ describe('Articles Container Test test', () => {
             page: 1,
             totalResults: 35
         }
-
-        const store = createTestStore(initialState) 
-
-        const wrapper = mount(
-            <Provider store={store}>
-                <Router>
-                    <ArticlesContainer />
-                </Router>
-            </Provider>
-        )
+        const wrapper = setUp(initialState)
         const element = wrapper.find('#load-more-articles-button').at(1)   
         expect(element.exists).toBeTruthy()
        
@@ -78,16 +67,7 @@ describe('Articles Container Test test', () => {
             page: 1,
             totalResults: 0
         }
-
-        const store = createTestStore(initialState) 
-
-        const wrapper = mount(
-            <Provider store={store}>
-                <Router>
-                    <ArticlesContainer />
-                </Router>
-            </Provider>
-        ).at(0).at(0)
+        const wrapper = setUp(initialState)
         const element = wrapper.find('#load-more-articles-button')
     
          expect(element.exists()).toBeFalsy()

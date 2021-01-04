@@ -5,20 +5,31 @@ import { mountToJson } from 'enzyme-to-json'
 import Header from '../components/Header'
 import { Provider } from 'react-redux'
 
-const testSelectList = (initialState, expectedValue) => {
+// const setUp = (initialState, expectedValue) => {
+//     const store = createTestStore(initialState) 
+
+//     const wrapper = mount(
+//         <Provider store={store}>
+//         <Header />
+//         </Provider>
+//     ).childAt(0)
+
+//     const element = wrapper.find('.countries-sort-select-list').at(1)
+//     expect(element.props().value).toEqual(expectedValue)
+// }
+const setUp = (initialState) => {
     const store = createTestStore(initialState) 
 
     const wrapper = mount(
-        <Provider store={store}>
-        <Header />
-        </Provider>
-    ).childAt(0)
-
-    const element = wrapper.find('.countries-sort-select-list').at(1)
-    expect(element.props().value).toEqual(expectedValue)
+                        <Provider store={store}>
+                            <Header />
+                        </Provider>
+                    ).childAt(0)
+    return wrapper
 }
 
 describe('Header test', () => {
+    //TODO - figure out how to pass parameters to beforeEach
     test('Renders correctly', () => {
         const initialState = {
             articles: [],
@@ -28,13 +39,7 @@ describe('Header test', () => {
             page: 1,
             totalResults: null
         }
-        const store = createTestStore(initialState) 
-
-        const wrapper = mount(
-                <Provider store={store}>
-                    <Header />
-                </Provider>
-                    ).childAt(0)
+        const wrapper = setUp(initialState)
         expect(mountToJson(wrapper)).toMatchSnapshot()
             })
     
@@ -47,8 +52,9 @@ describe('Header test', () => {
             page: 1,
             totalResults: null
         }
-
-        testSelectList(initialState, 'us')
+        const wrapper = setUp(initialState)
+        const element = wrapper.find('.countries-sort-select-list').at(1)
+        expect(element.props().value).toEqual('us')
        
     })
     test('Renders sort by in select list when search bar is not empty', () => {
@@ -61,7 +67,8 @@ describe('Header test', () => {
             page: 1,
             totalResults: null
         }
-
-        testSelectList(initialState, 'publishedAt')
+        const wrapper = setUp(initialState)
+        const element = wrapper.find('.countries-sort-select-list').at(1)
+        expect(element.props().value).toEqual('publishedAt')
     })
 })
