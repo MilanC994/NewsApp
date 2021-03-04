@@ -7,7 +7,7 @@ import {
   } from "./constants"
   import axios from "axios"
 
-  const getUrl = (searchTerm, sortBy, country = 'us') => {
+  const getUrl = (searchTerm, sortBy, country) => {
     if(searchTerm)
       return process.env.REACT_APP_SEARCH_ARTICLES_URL + searchTerm + '&sortBy=' + sortBy
     
@@ -15,7 +15,7 @@ import {
 
   }
 
-  export const fetchArticles = (searchTerm, sortBy, country) => {
+  export const fetchArticles = (searchTerm, sortBy = 'publishedAt', country = 'us') => {
     const url = getUrl(searchTerm, sortBy, country)
     return async dispatch => {
       try {

@@ -5,7 +5,7 @@ import {  fetchArticles, fetchMoreArticles } from "../../redux/actions";
 import _ from 'lodash'
 
 
-const useContentContainer = () => {
+const useArticlesContainer = () => {
     const articles = useSelector(state => state.articles)
     const country = useSelector(state => state.country)
     const page = useSelector(state => state.page)
@@ -37,4 +37,4 @@ const useContentContainer = () => {
     return { articles, getMoreData, renderLoadMoreButton }
 }
 
-export default useContentContainer
+export default useArticlesContainer

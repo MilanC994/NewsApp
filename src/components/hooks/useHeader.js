@@ -15,21 +15,21 @@ const useHeader = () => {
 
     const dispatch = useDispatch()
 
-    const debouncedSetSearchTerm =useCallback( _.debounce(async( searchTerm )=>{
+    const debouncedSetSearchTerm =useCallback( _.debounce(async searchTerm => {
         await dispatch(setSearchTerm(searchTerm))
         },SEARCH_DEBOUNCE_TIME),[])
 
-    const changeCountry = useCallback((e) => {
+    const changeCountry = useCallback( e => {
         dispatch(setCountry(e.target.value))
     },[])
 
-    const changeSearchTerm = useCallback(e => {
+    const changeSearchTerm = useCallback( e => {
             setSearchValue(e.target.value)
             debouncedSetSearchTerm(e.target.value)
     },[])       
     
 
-    const changeSortBy = useCallback((e) => {
+    const changeSortBy = useCallback( e => {
       dispatch(setSortBy(e.target.value))
     },[])
 
@@ -37,10 +37,6 @@ const useHeader = () => {
         return { value: searchValue, onChange: changeSearchTerm }
     }, [searchValue, changeSearchTerm])
     
-    const renderCountries = useMemo(() => {
-        return searchTerm.length === 0
-    }, [searchTerm])
-
     const sort = useMemo(() => {
         return { value: sortBy, onChange: changeSortBy }
     }, [sortBy, changeSortBy])
@@ -50,8 +46,8 @@ const useHeader = () => {
     }, [byCountry, changeCountry])
 
     const selectList =  useMemo(() => {
-        return renderCountries ? { item: country, options: countries } : { item: sort, options: searchSort }
-    },[renderCountries, country, sort])
+        return searchTerm.length === 0 ? { item: country, options: countries } : { item: sort, options: searchSort }
+    },[searchTerm, country, sort])
 
   return { search, selectList }
 }

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import slugify from 'slugify'
 import { ARTICLE_HAS_NO_TITLE } from '../utils/constants'
 
-const ArticleCard = ({ title, description, urlToImage, author, content, publishedAt, source, url }) => {
+const ArticleCard = ({ title, description, urlToImage, ...data }) => {
     const linkTo = title ? `/article/${slugify(title)}` : `/article/${slugify(ARTICLE_HAS_NO_TITLE)}`
     return (
         <Card className="article-card">
@@ -20,11 +20,7 @@ const ArticleCard = ({ title, description, urlToImage, author, content, publishe
                     title,
                     description,
                     urlToImage,
-                    author,
-                    content,
-                    publishedAt,
-                    source,
-                    url
+                    ...data
                 }
                 }}>
                     <Button variant="primary">Read Full Article</Button>
