@@ -42,7 +42,7 @@ const Article = (props) => {
                                 {content ? 
                                     <Card.Text align="justify" className="content-paragraph">{content}{dummyText}</Card.Text>
                                     : 
-                                    <Card.Text>Content Not Provided. Click <Link to="/">here</Link> to go to front page</Card.Text>
+                                    <Card.Text>Content Not Provided. Click <Link className='link' to="/">here</Link> to go to front page</Card.Text>
                                 }
                             </Container>
                         </Card.Body>
@@ -50,12 +50,12 @@ const Article = (props) => {
                             <Row style={{marginTop:"10px"}}>
                                 <Col>
                                     <ListGroup  horizontal>
-                                        <ListGroup.Item variant="light" ><Link to="/">Home Page</Link></ListGroup.Item>
+                                        <ListGroup.Item variant="light" ><Link className='link' to="/">Home Page</Link></ListGroup.Item>
                                     </ListGroup> 
                                 </Col>
                                 <Col  bsPrefix="justify"> 
                                     <ListGroup  horizontal style={{width:"fit-content"}}>
-                                        <ListGroup.Item variant="light"><a href={url} target="_blank" rel="noopener noreferrer" >Visit Source Website</a></ListGroup.Item>
+                                        <ListGroup.Item variant="light"><a className='link' href={url} target="_blank" rel="noopener noreferrer" >Visit Source Website</a></ListGroup.Item>
                                     </ListGroup>
                                 </Col>
                             </Row>

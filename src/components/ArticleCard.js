@@ -22,7 +22,9 @@ const ArticleCard = ({ title, description, urlToImage, ...data }) => {
                     urlToImage,
                     ...data
                 }
-                }}>
+                }}
+                className='link'
+                >
                     <Button variant="primary">Read Full Article</Button>
                 </Link>
             </Card.Footer>

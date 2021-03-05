@@ -15,13 +15,14 @@ const SideCard = ({article}) => {
             state: {
                 title,
                 urlToImage,
-                urlToImage,
+                publishedAt,
                 ...data
                 }
             }}
+            className='link'
             >
             <Card>
-                <Card.Img variant="top" src={urlToImage} />
+                <Card.Img variant="top" alt="Picture Not Found" src={urlToImage} />
                 <Card.Body>
                     <Card.Title>{ title }</Card.Title>
                 </Card.Body>

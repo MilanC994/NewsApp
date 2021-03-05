@@ -29,9 +29,8 @@ const useArticle = ({ title, publishedAt, source }) => {
             if(articles.length > 5)
                 return articles.filter(ar => ar.title != title).slice(0,5)
             return articles.filter(ar => ar.title != title)
-            
-            
-        }
+        },
+        [articles, title]
     )
     return { sideArticles, datePublishedAt, sourceName }
 }
