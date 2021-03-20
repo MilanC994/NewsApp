@@ -8,7 +8,6 @@
   );
   min-height: 100vh;
   padding: 60px 5px 10px 5px;
-  /* background-image: url('./images/NewsPaper.jpg'); */
   background: linear-gradient(
       rgba(255, 255, 255, 0.1),
       rgba(255, 255, 255, 0.1)
@@ -19,13 +18,11 @@
   background-color: #c2b9b0;
 }
 .header {
-  /* background-color: inherit !important; */
   border-bottom: 2px groove;
   background-color: #1a1a1d !important;
 }
 .app-logo {
   text-decoration: none !important;
-  /* text-shadow: -1px 0 gray, 0 1px gray, 1px 0 gray, 0 -1px gray; */
   font-weight: bolder;
 }
 
@@ -44,7 +41,6 @@
   margin-top: 30px;
 }
 .article-card {
-  /* background: linear-gradient(to right, rgb(211, 204, 227), rgb(233, 228, 240)); */
   background-color: inherit;
   font-weight: bold;
   border: 2px solid black;

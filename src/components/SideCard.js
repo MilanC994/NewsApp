@@ -15,7 +15,7 @@ const SideCard = ({ article }) => {
     : `/article/${slugify(ARTICLE_HAS_NO_TITLE)}`
   return (
     <Link
-      className="mb-4"
+      style={{ textDecoration: 'none' }}
       to={{
         pathname: linkTo,
         state: {
@@ -27,7 +27,7 @@ const SideCard = ({ article }) => {
       }}
       className="link"
     >
-      <Card>
+      <Card className="mb-2 asside">
         <Card.Img variant="top" alt="Picture Not Found" src={urlToImage} />
         <Card.Body>
           <Card.Title>{title}</Card.Title>
