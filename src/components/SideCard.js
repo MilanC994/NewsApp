@@ -15,6 +15,7 @@ const SideCard = ({ article }) => {
     : `/article/${slugify(ARTICLE_HAS_NO_TITLE)}`
   return (
     <Link
+      className="mb-4"
       to={{
         pathname: linkTo,
         state: {

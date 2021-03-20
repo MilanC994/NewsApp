@@ -7,8 +7,14 @@ const Header = () => {
   const { search, selectList } = useHeader()
 
   return (
-    <Navbar fixed="top" className="mb1" bg="primary" variant="dark" expand="md">
-      <Link to="/" className="link">
+    <Navbar
+      fixed="top"
+      className="header mb-2"
+      bg="primary"
+      variant="dark"
+      expand="md"
+    >
+      <Link to="/" className="app-logo">
         <Navbar.Brand>News Application</Navbar.Brand>
       </Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />

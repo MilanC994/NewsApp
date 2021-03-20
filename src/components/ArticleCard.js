@@ -9,7 +9,7 @@ const ArticleCard = ({ title, description, urlToImage, ...data }) => {
     ? `/article/${slugify(title)}`
     : `/article/${slugify(ARTICLE_HAS_NO_TITLE)}`
   return (
-    <Card className="article-card">
+    <Card className="article-card mb-4">
       {urlToImage && (
         <Card.Img
           className="card-image"

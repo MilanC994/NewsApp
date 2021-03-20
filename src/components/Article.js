@@ -28,7 +28,10 @@ const Article = props => {
       <Row>
         <Col sm={12} md={12} lg={9}>
           <Container>
-            <Card className="article-card">
+            <Card
+              className="article-card mt-4"
+              style={{ background: '#c2b9b0' }}
+            >
               <h1 className="display-5">{title}</h1>
               <Card.Body>
                 <ListGroup horizontal="sm">
@@ -115,7 +118,9 @@ const Article = props => {
         </Col>
         <Col lg={3} className="d-none d-lg-block">
           <Container>
-            <h3>Related Articles</h3>
+            <h3 style={{ fontWeight: 'bold', color: 'white' }}>
+              Related Articles
+            </h3>
             {sideArticles.map(article => (
               <SideCard key={article.title + Math.random()} article={article} />
             ))}
