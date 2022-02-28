@@ -1,10 +1,10 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
-import reducer from '../redux/reducer'
+import { articlesReducer, loadingReducer, errorReducer } from '../redux/reducers'
 
 export const createTestStore = initialState => {
   const createStoreWithMiddleware = applyMiddleware(thunk)(createStore)
-  return createStoreWithMiddleware(reducer, initialState)
+  return createStoreWithMiddleware(articlesReducer, initialState)
 }
 export const mockArticles = [
   {

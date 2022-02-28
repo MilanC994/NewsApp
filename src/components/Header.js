@@ -15,7 +15,7 @@ const Header = () => {
       expand="md"
     >
       <Link to="/" className="app-logo">
-        <Navbar.Brand>News Application</Navbar.Brand>
+        <Navbar.Brand>News</Navbar.Brand>
       </Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

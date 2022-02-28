@@ -1,9 +1,9 @@
 import {
-  FETCH_ARTICLES,
+  FETCH_ARTICLES_SUCCESS,
   SET_SEARCH_TERM,
   SET_SORT_BY,
   SET_COUNTRY,
-  FETCH_MORE_ARTICLES,
+  FETCH_MORE_ARTICLES_SUCCESS,
 } from './constants'
 import axios from 'axios'
 const CancelToken = axios.CancelToken
@@ -36,9 +36,8 @@ export const fetchArticles = (
           fetchArticlesCancel = c
         }),
       })
-      console.log('Fetched articles with', searchTerm, sortBy)
       dispatch({
-        type: FETCH_ARTICLES,
+        type: FETCH_ARTICLES_SUCCESS,
         payload: response.data,
       })
     } catch (error) {
@@ -59,7 +58,7 @@ export const fetchMoreArticles = (searchTerm, sortBy, country, page) => {
         }),
       })
       dispatch({
-        type: FETCH_MORE_ARTICLES,
+        type: FETCH_MORE_ARTICLES_SUCCESS,
         payload: response.data,
       })
     } catch (error) {

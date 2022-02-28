@@ -1,10 +1,10 @@
 import {
-  FETCH_ARTICLES,
+  FETCH_ARTICLES_SUCCESS,
   SET_SEARCH_TERM,
   SET_SORT_BY,
   SET_COUNTRY,
-  FETCH_MORE_ARTICLES,
-} from './constants'
+  FETCH_MORE_ARTICLES_SUCCESS,
+} from '../constants'
 
 const initialState = {
   articles: [],
@@ -15,9 +15,9 @@ const initialState = {
   totalResults: null,
 }
 
-const reducer = (state = initialState, action) => {
+const articlesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_ARTICLES: {
+    case FETCH_ARTICLES_SUCCESS: {
       return {
         ...state,
         articles: action.payload.articles,
@@ -25,7 +25,7 @@ const reducer = (state = initialState, action) => {
         page: 1,
       }
     }
-    case FETCH_MORE_ARTICLES: {
+    case FETCH_MORE_ARTICLES_SUCCESS: {
       return {
         ...state,
         articles: [...state.articles, ...action.payload.articles],
@@ -57,4 +57,4 @@ const reducer = (state = initialState, action) => {
   }
 }
 
-export default reducer
+export default articlesReducer

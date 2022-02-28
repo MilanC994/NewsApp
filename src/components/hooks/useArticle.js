@@ -4,7 +4,7 @@ import { fetchArticles } from '../../redux/actions'
 import moment from 'moment'
 
 const useArticle = ({ title, publishedAt, source }) => {
-  const articles = useSelector(state => state.articles)
+  const articles = useSelector(state => state.articles.articles)
   const dispatch = useDispatch()
 
   const getData = useCallback(async () => {

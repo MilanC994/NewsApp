@@ -7,11 +7,11 @@ import { countries, searchSort } from '../../utils/constants'
 const SEARCH_DEBOUNCE_TIME = 1000
 
 const useHeader = () => {
-  const searchTerm = useSelector(state => state.searchTerm)
+  const searchTerm = useSelector(state => state.articles.searchTerm)
   const [searchValue, setSearchValue] = useState(searchTerm)
 
-  const sortBy = useSelector(state => state.sortBy)
-  const byCountry = useSelector(state => state.country)
+  const sortBy = useSelector(state => state.articles.sortBy)
+  const byCountry = useSelector(state => state.articles.country)
 
   const dispatch = useDispatch()
 
