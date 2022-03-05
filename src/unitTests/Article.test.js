@@ -1,8 +1,8 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Article from '../components/Article'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { mountToJson } from 'enzyme-to-json'
+import Article from '../components/Article'
 
 describe('Article   test', () => {
   test('Renders correctly', () => {
@@ -23,7 +23,7 @@ describe('Article   test', () => {
     const wrapper = mount(
       <Router>
         <Article {...componentProps} />
-      </Router>
+      </Router>,
     ).childAt(0)
     expect(mountToJson(wrapper)).toMatchSnapshot()
   })
@@ -31,7 +31,7 @@ describe('Article   test', () => {
     const wrapper = mount(
       <Router>
         <Article />
-      </Router>
+      </Router>,
     ).childAt(0)
     const element = wrapper.find('.article-card')
     expect(element.exists()).toBeFalsy()

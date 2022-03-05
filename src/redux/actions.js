@@ -1,3 +1,4 @@
+import axios from 'axios'
 import {
   FETCH_ARTICLES_SUCCESS,
   SET_SEARCH_TERM,
@@ -9,19 +10,19 @@ import {
   FETCH_MORE_ARTICLES_REQUEST,
   FETCH_MORE_ARTICLES_FAILURE,
 } from './constants'
-import axios from 'axios'
 
-const CancelToken = axios.CancelToken
-let fetchArticlesCancel, fetchMoreCancel
+const { CancelToken } = axios
+let fetchArticlesCancel; let
+  fetchMoreCancel
 
 const getUrl = (searchTerm, sortBy, country) => {
-  if (searchTerm)
+  if (searchTerm) {
     return (
-      process.env.REACT_APP_SEARCH_ARTICLES_URL +
-      searchTerm +
-      '&sortBy=' +
-      sortBy
+      `${process.env.REACT_APP_SEARCH_ARTICLES_URL
+      + searchTerm
+      }&sortBy=${sortBy}`
     )
+  }
 
   return process.env.REACT_APP_TOP_ARTICLES_URL + country
 }
@@ -29,43 +30,42 @@ const getUrl = (searchTerm, sortBy, country) => {
 export const fetchArticles = (
   searchTerm,
   sortBy = 'publishedAt',
-  country = 'us'
+  country = 'us',
 ) => {
   const url = getUrl(searchTerm, sortBy, country)
-  fetchArticlesCancel && fetchArticlesCancel()
-  return async dispatch => {
+  if (fetchArticlesCancel) fetchArticlesCancel()
+  return async (dispatch) => {
     dispatch({
-      type: FETCH_ARTICLES_REQUEST
+      type: FETCH_ARTICLES_REQUEST,
     })
     axios.get(url, {
-      cancelToken: new CancelToken(function executor(c) {
+      cancelToken: new CancelToken((c) => {
         fetchArticlesCancel = c
-      })
+      }),
     }).then(({ data }) => {
       dispatch({
         type: FETCH_ARTICLES_SUCCESS,
         payload: data,
       })
     }).catch((error) => {
-
       dispatch({
         type: FETCH_ARTICLES_FAILURE,
-        payload: error.response?.data?.message || error.message
+        payload: error.response?.data?.message || error.message,
       })
     })
   }
 }
 
 export const fetchMoreArticles = (searchTerm, sortBy, country, page) => {
-  const url = getUrl(searchTerm, sortBy, country) + '&page=' + page
-  fetchMoreCancel && fetchMoreCancel()
-  return async dispatch => {
+  const url = `${getUrl(searchTerm, sortBy, country)}&page=${page}`
+  if (fetchMoreCancel) fetchMoreCancel()
+  return async (dispatch) => {
     dispatch({
-      type: FETCH_MORE_ARTICLES_REQUEST
+      type: FETCH_MORE_ARTICLES_REQUEST,
     })
     try {
       const response = await axios.get(url, {
-        cancelToken: new CancelToken(function executor(c) {
+        cancelToken: new CancelToken((c) => {
           fetchMoreCancel = c
         }),
       })
@@ -76,27 +76,21 @@ export const fetchMoreArticles = (searchTerm, sortBy, country, page) => {
     } catch (error) {
       dispatch({
         type: FETCH_MORE_ARTICLES_FAILURE,
-        payload: error.response?.data?.message || error.message
+        payload: error.response?.data?.message || error.message,
       })
     }
   }
 }
-export const setSearchTerm = searchTerm => {
-  return {
-    type: SET_SEARCH_TERM,
-    payload: searchTerm,
-  }
-}
-export const setCountry = country => {
-  return {
-    type: SET_COUNTRY,
-    payload: country,
-  }
-}
+export const setSearchTerm = (searchTerm) => ({
+  type: SET_SEARCH_TERM,
+  payload: searchTerm,
+})
+export const setCountry = (country) => ({
+  type: SET_COUNTRY,
+  payload: country,
+})
 
-export const setSortBy = sortBy => {
-  return {
-    type: SET_SORT_BY,
-    payload: sortBy,
-  }
-}
+export const setSortBy = (sortBy) => ({
+  type: SET_SORT_BY,
+  payload: sortBy,
+})

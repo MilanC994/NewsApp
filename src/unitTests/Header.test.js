@@ -1,9 +1,9 @@
-import { createTestStore } from './mockData'
 import React from 'react'
 import { mount } from 'enzyme'
 import { mountToJson } from 'enzyme-to-json'
-import Header from '../components/Header'
 import { Provider } from 'react-redux'
+import Header from '../components/Header'
+import { createTestStore } from './mockData'
 
 // const setUp = (initialState, expectedValue) => {
 //     const store = createTestStore(initialState)
@@ -17,19 +17,19 @@ import { Provider } from 'react-redux'
 //     const element = wrapper.find('.countries-sort-select-list').at(1)
 //     expect(element.props().value).toEqual(expectedValue)
 // }
-const setUp = initialState => {
+const setUp = (initialState) => {
   const store = createTestStore(initialState)
 
   const wrapper = mount(
     <Provider store={store}>
       <Header />
-    </Provider>
+    </Provider>,
   ).childAt(0)
   return wrapper
 }
 
 describe('Header test', () => {
-  //TODO - figure out how to pass parameters to beforeEach
+  // TODO - figure out how to pass parameters to beforeEach
   test('Renders correctly', () => {
     const initialState = {
       articles: [],

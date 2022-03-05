@@ -1,15 +1,15 @@
 import React from 'react'
 import './App.css'
-import "react-activity/dist/library.css";
-import Header from './components/Header'
-import ArticlesContainer from './components/ArticlesContainer'
-import Article from './components/Article'
+import 'react-activity/dist/library.css'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from 'react-router-dom'
+import Header from './components/Header'
+import ArticlesContainer from './components/ArticlesContainer'
+import Article from './components/Article'
 
 function App() {
   return (

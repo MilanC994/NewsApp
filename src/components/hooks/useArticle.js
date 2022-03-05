@@ -1,16 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useCallback, useEffect, useMemo } from 'react'
-import { fetchArticles } from '../../redux/actions'
 import moment from 'moment'
+import { fetchArticles } from '../../redux/actions'
 
 const useArticle = ({ title, publishedAt, source }) => {
-  const articles = useSelector(state => state.articles.articles)
+  const articles = useSelector((state) => state.articles.articles)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
+    window.scrollTo(0, 0)
+  }, [])
 
   const getData = useCallback(async () => {
     await dispatch(fetchArticles())
@@ -24,19 +23,20 @@ const useArticle = ({ title, publishedAt, source }) => {
       fetch()
     }
   }, [])
-  const datePublishedAt = useMemo(() =>
-    publishedAt
+  const datePublishedAt = useMemo(
+    () => (publishedAt
       ? moment(publishedAt).format('Do MMMM YYYY HH:SS')
-      : 'Date not provided'
-    , [publishedAt])
-  const sourceName = useMemo(() =>
-    source && source.name ? source.name : 'Source Not Provided'
-    , [source])
+      : 'Date not provided'),
+    [publishedAt],
+  )
+  const sourceName = useMemo(
+    () => (source && source.name ? source.name : 'Source Not Provided'),
+    [source],
+  )
   const sideArticles = useMemo(() => {
     if (!articles) return []
-    if (articles.length > 5)
-      return articles.filter(ar => ar.title != title).slice(0, 5)
-    return articles.filter(ar => ar.title != title)
+    if (articles.length > 5) return articles.filter((ar) => ar.title !== title).slice(0, 5)
+    return articles.filter((ar) => ar.title !== title)
   }, [articles, title])
   return { sideArticles, datePublishedAt, sourceName }
 }

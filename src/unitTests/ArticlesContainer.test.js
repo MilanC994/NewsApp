@@ -1,10 +1,10 @@
-import { createTestStore, mockResponse } from './mockData'
 import React from 'react'
 import { mount } from 'enzyme'
-import ArticlesContainer from '../components/ArticlesContainer'
 import { Provider } from 'react-redux'
 import { mountToJson } from 'enzyme-to-json'
 import moxios from 'moxios'
+import ArticlesContainer from '../components/ArticlesContainer'
+import { createTestStore, mockResponse } from './mockData'
 
 beforeEach(() => {
   moxios.install()
@@ -18,13 +18,13 @@ afterEach(() => {
   moxios.uninstall()
 })
 
-const setUp = initialState => {
+const setUp = (initialState) => {
   const store = createTestStore(initialState)
 
   const wrapper = mount(
     <Provider store={store}>
       <ArticlesContainer />
-    </Provider>
+    </Provider>,
   ).childAt(0)
 
   return wrapper

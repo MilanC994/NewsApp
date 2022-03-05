@@ -1,9 +1,9 @@
 import React from 'react'
 import { Navbar, Form, FormControl } from 'react-bootstrap'
-import useHeader from './hooks/useHeader'
 import { Link } from 'react-router-dom'
+import useHeader from './hooks/useHeader'
 
-const Header = () => {
+function Header() {
   const { search, selectList } = useHeader()
 
   return (
@@ -22,7 +22,7 @@ const Header = () => {
         <Form
           inline
           className="ml-auto"
-          onSubmit={e => {
+          onSubmit={(e) => {
             e.preventDefault()
           }}
         >
@@ -39,7 +39,7 @@ const Header = () => {
             custom
             {...selectList.item}
           >
-            {selectList.options.map(item => (
+            {selectList.options.map((item) => (
               <option key={item.value} {...item}>
                 {item.name}
               </option>

@@ -1,13 +1,15 @@
 import React from 'react'
-import { Container, Card, Figure, ListGroup, Row, Col } from 'react-bootstrap'
+import {
+  Container, Card, Figure, ListGroup, Row, Col,
+} from 'react-bootstrap'
 import { Redirect, Link } from 'react-router-dom'
 import { dummyText } from '../utils/constants'
 import { authorSvg, dateSvg, sourceSvg } from '../utils/svgIcons'
 import useArticle from './hooks/useArticle'
 import SideCard from './SideCard'
 
-const Article = props => {
-  if (!props.location || !props.location.state) return <Redirect to="/" />
+function Article({ location }) {
+  if (!location || !location.state) return <Redirect to="/" />
   const {
     title,
     source,
@@ -17,7 +19,7 @@ const Article = props => {
     publishedAt,
     content,
     url,
-  } = props.location.state
+  } = location.state
   const { sideArticles, datePublishedAt, sourceName } = useArticle({
     title,
     publishedAt,
@@ -36,13 +38,22 @@ const Article = props => {
               <Card.Body className="pr-0 pl-0">
                 <ListGroup horizontal="sm">
                   <ListGroup.Item variant="dark">
-                    {authorSvg()} Author: {author ? author : 'Not Listed'}
+                    {authorSvg()}
+                    {' '}
+                    Author:
+                    {author || 'Not Listed'}
                   </ListGroup.Item>
                   <ListGroup.Item variant="dark">
-                    {sourceSvg()} Source: {sourceName}
+                    {sourceSvg()}
+                    {' '}
+                    Source:
+                    {sourceName}
                   </ListGroup.Item>
                   <ListGroup.Item variant="dark">
-                    {dateSvg()} Published At: {datePublishedAt}
+                    {dateSvg()}
+                    {' '}
+                    Published At:
+                    {datePublishedAt}
                   </ListGroup.Item>
                 </ListGroup>
                 <hr />
@@ -50,7 +61,7 @@ const Article = props => {
                   {description}
                 </Card.Subtitle>
                 <hr />
-                <Container className="pl-0 pr-0" >
+                <Container className="pl-0 pr-0">
                   <Figure>
                     <Figure.Image
                       alt="article-image"
@@ -75,10 +86,12 @@ const Article = props => {
                     </Card.Text>
                   ) : (
                     <Card.Text>
-                      Content Not Provided. Click{' '}
+                      Content Not Provided. Click
+                      {' '}
                       <Link className="link" to="/">
                         here
-                      </Link>{' '}
+                      </Link>
+                      {' '}
                       to go to front page
                     </Card.Text>
                   )}
@@ -119,7 +132,7 @@ const Article = props => {
             <h3 style={{ fontWeight: 'bold', color: 'white' }}>
               Related Articles
             </h3>
-            {sideArticles.map(article => (
+            {sideArticles.map((article) => (
               <SideCard key={article.title + Math.random()} article={article} />
             ))}
           </Container>

@@ -1,8 +1,8 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import { articlesReducer, loadingReducer, errorReducer } from '../redux/reducers'
+import { articlesReducer } from '../redux/reducers'
 
-export const createTestStore = initialState => {
+export const createTestStore = (initialState) => {
   const createStoreWithMiddleware = applyMiddleware(thunk)(createStore)
   return createStoreWithMiddleware(articlesReducer, initialState)
 }

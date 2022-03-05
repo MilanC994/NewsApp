@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom'
 import slugify from 'slugify'
 import { ARTICLE_HAS_NO_TITLE } from '../utils/constants'
 
-const SideCard = ({ article }) => {
-  const { title, urlToImage, publishedAt, ...data } = article
+function SideCard({ article }) {
+  const {
+    title, urlToImage, publishedAt, ...data
+  } = article
   const datePublishedAt = publishedAt
     ? moment(publishedAt).fromNow()
     : 'Date not provided'
