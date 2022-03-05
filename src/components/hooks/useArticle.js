@@ -7,6 +7,11 @@ const useArticle = ({ title, publishedAt, source }) => {
   const articles = useSelector(state => state.articles.articles)
   const dispatch = useDispatch()
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+
   const getData = useCallback(async () => {
     await dispatch(fetchArticles())
   }, [])
@@ -23,10 +28,10 @@ const useArticle = ({ title, publishedAt, source }) => {
     publishedAt
       ? moment(publishedAt).format('Do MMMM YYYY HH:SS')
       : 'Date not provided'
-  )
+    , [publishedAt])
   const sourceName = useMemo(() =>
     source && source.name ? source.name : 'Source Not Provided'
-  )
+    , [source])
   const sideArticles = useMemo(() => {
     if (!articles) return []
     if (articles.length > 5)

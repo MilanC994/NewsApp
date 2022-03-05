@@ -22,7 +22,7 @@ const ArticleCard = ({ title, description, urlToImage, ...data }) => {
         <Card.Title>{title}</Card.Title>
         <Card.Text>{description}</Card.Text>
       </Card.Body>
-      <Card.Footer>
+      <Card.Footer className="text-center">
         <Link
           to={{
             pathname: linkTo,

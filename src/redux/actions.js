@@ -4,8 +4,13 @@ import {
   SET_SORT_BY,
   SET_COUNTRY,
   FETCH_MORE_ARTICLES_SUCCESS,
+  FETCH_ARTICLES_REQUEST,
+  FETCH_ARTICLES_FAILURE,
+  FETCH_MORE_ARTICLES_REQUEST,
+  FETCH_MORE_ARTICLES_FAILURE,
 } from './constants'
 import axios from 'axios'
+
 const CancelToken = axios.CancelToken
 let fetchArticlesCancel, fetchMoreCancel
 
@@ -29,31 +34,38 @@ export const fetchArticles = (
   const url = getUrl(searchTerm, sortBy, country)
   fetchArticlesCancel && fetchArticlesCancel()
   return async dispatch => {
-    try {
-      const response = await axios.get(url, {
-        cancelToken: new CancelToken(function executor(c) {
-          // An executor function receives a cancel function as a parameter
-          fetchArticlesCancel = c
-        }),
+    dispatch({
+      type: FETCH_ARTICLES_REQUEST
+    })
+    axios.get(url, {
+      cancelToken: new CancelToken(function executor(c) {
+        fetchArticlesCancel = c
       })
+    }).then(({ data }) => {
       dispatch({
         type: FETCH_ARTICLES_SUCCESS,
-        payload: response.data,
+        payload: data,
       })
-    } catch (error) {
-      console.log(error)
-      alert('Error Happened While Fetching Movies')
-    }
+    }).catch((error) => {
+
+      dispatch({
+        type: FETCH_ARTICLES_FAILURE,
+        payload: error.response?.data?.message || error.message
+      })
+    })
   }
 }
+
 export const fetchMoreArticles = (searchTerm, sortBy, country, page) => {
   const url = getUrl(searchTerm, sortBy, country) + '&page=' + page
   fetchMoreCancel && fetchMoreCancel()
   return async dispatch => {
+    dispatch({
+      type: FETCH_MORE_ARTICLES_REQUEST
+    })
     try {
       const response = await axios.get(url, {
         cancelToken: new CancelToken(function executor(c) {
-          // An executor function receives a cancel function as a parameter
           fetchMoreCancel = c
         }),
       })
@@ -62,8 +74,10 @@ export const fetchMoreArticles = (searchTerm, sortBy, country, page) => {
         payload: response.data,
       })
     } catch (error) {
-      console.log(error)
-      alert('Error Happened While Fetching Movies')
+      dispatch({
+        type: FETCH_MORE_ARTICLES_FAILURE,
+        payload: error.response?.data?.message || error.message
+      })
     }
   }
 }

@@ -29,11 +29,11 @@ const Article = props => {
         <Col sm={12} md={12} lg={9}>
           <Container>
             <Card
-              className="article-card mt-4"
+              className="article-card mt-4 p-3"
               style={{ background: '#c2b9b0' }}
             >
               <h1 className="display-5">{title}</h1>
-              <Card.Body>
+              <Card.Body className="pr-0 pl-0">
                 <ListGroup horizontal="sm">
                   <ListGroup.Item variant="dark">
                     {authorSvg()} Author: {author ? author : 'Not Listed'}
@@ -50,13 +50,11 @@ const Article = props => {
                   {description}
                 </Card.Subtitle>
                 <hr />
-                <Container>
+                <Container className="pl-0 pr-0" >
                   <Figure>
                     <Figure.Image
                       alt="article-image"
                       style={{
-                        float: 'left',
-                        margin: '10px',
                         maxHeight: '800px',
                       }}
                       src={urlToImage}

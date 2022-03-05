@@ -3,10 +3,9 @@ import { useCallback, useEffect, useMemo } from 'react'
 import { fetchArticles, fetchMoreArticles } from '../../redux/actions'
 import _ from 'lodash'
 import { createErrorMessageSelector, createLoadingSelector } from '../../redux/selectors'
+import { FETCH_ARTICLES, FETCH_MORE_ARTICLES } from '../../redux/constants'
 
 const useArticlesContainer = () => {
-  const state = useSelector(state => state)
-  console.log(state, " STATE")
   const articles = useSelector(state => state.articles.articles)
   const country = useSelector(state => state.articles.country)
   const page = useSelector(state => state.articles.page)
@@ -24,7 +23,7 @@ const useArticlesContainer = () => {
     await dispatch(fetchMoreArticles(searchTerm, sortBy, country, page + 1))
   }, [searchTerm, sortBy, country, page])
 
-  const renderLoadMoreButton = useMemo(() => {
+  const shouldRenderLoadMoreButton = useMemo(() => {
     return totalResults > articles.length && articles.length < 100
   }, [totalResults, articles])
 
@@ -35,20 +34,21 @@ const useArticlesContainer = () => {
     fetch()
   }, [getData])
 
-  const loadingUserClubsDetailsSelector = useMemo(
-    () => createLoadingSelector(['GET_CLUBS_DETAILS']),
-    [],
-  );
-  const userClubsDetailsLoading = useSelector(state =>
-    loadingUserClubsDetailsSelector(state),
-  );
+  const articlesLoadingSelector = useMemo(() => createLoadingSelector([FETCH_ARTICLES]), [])
+  const articlesLoading = useSelector(state => articlesLoadingSelector(state));
 
-  const userClubsDetailsErrorSelector = useMemo(
-    () => createErrorMessageSelector(['GET_CLUBS_DETAILS']),
-    [],
-  );
+  const articlesErrorSelector = useMemo(() => createErrorMessageSelector([FETCH_ARTICLES]), [])
+  const articlesError = useSelector(state => articlesErrorSelector(state))
 
-  return { articles, getMoreData, renderLoadMoreButton }
+
+  const moreArticlesLoadingSelector = useMemo(() => createLoadingSelector([FETCH_MORE_ARTICLES]), [])
+  const moreArticlesLoading = useSelector(state => moreArticlesLoadingSelector(state));
+
+  const moreArticlesErrorSelector = useMemo(() => createErrorMessageSelector([FETCH_MORE_ARTICLES]), [])
+  const moreArticlesError = useSelector(state => moreArticlesErrorSelector(state))
+
+
+  return { articles, getMoreData, articlesLoading, articlesError, moreArticlesLoading, moreArticlesError, shouldRenderLoadMoreButton }
 }
 
 export default useArticlesContainer

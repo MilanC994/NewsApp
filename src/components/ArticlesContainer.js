@@ -1,28 +1,42 @@
 import React from 'react'
+import { Dots } from "react-activity";
 import ArticleCard from './ArticleCard'
 import { CardColumns, Button, Container } from 'react-bootstrap'
 import useArticlesContainer from './hooks/useArticlesContainer'
 
+const Error = ({ message }) => <div className='p-3 bg-dark rounded'> <h5 className='text-danger font-weight-bold'>{message}</h5></div>
+
 const ArticlesContainer = () => {
-  const { articles, getMoreData, renderLoadMoreButton } = useArticlesContainer()
+  const { articles, getMoreData, shouldRenderLoadMoreButton, articlesLoading, articlesError, moreArticlesLoading, moreArticlesError } = useArticlesContainer()
+  if (articlesLoading || articlesError) {
+    return (
+      <div className="d-flex flex-column flex-1 align-items-center justify-content-center">
+        {articlesLoading && !articlesError && <Dots color='red' size={30} />}
+        {articlesError && <Error message={articlesError} />}
+      </div>
+    )
+  }
+
   return (
     <>
-      <CardColumns id="articles-container">
+      <CardColumns id="articles-container" className="mw-100" >
         {articles &&
           articles.map(article => (
             <ArticleCard key={article.url + Math.random()} {...article} />
           ))}
       </CardColumns>
-      <hr />
-      {renderLoadMoreButton && (
-        <Container>
-          <Button
-            variant="primary"
-            id="load-more-articles-button"
-            onClick={getMoreData}
-          >
-            LOAD MORE
-          </Button>
+      {shouldRenderLoadMoreButton && (
+        <Container className="d-flex justify-content-center align-items-center flex-column">
+          {moreArticlesLoading ? <Dots color='red' size={30} /> :
+            <Button
+              variant="primary"
+              id="load-more-articles-button"
+              className="w-25 mb-2"
+              onClick={getMoreData}
+            >
+              LOAD MORE
+            </Button>}
+          {moreArticlesError && <Error message={moreArticlesError} />}
         </Container>
       )}
     </>
